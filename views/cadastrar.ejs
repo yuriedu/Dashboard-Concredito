@@ -1,0 +1,235 @@
+<%- include('imports/navbar') %>
+<div class="body">
+  <div class="margin-top2" style="margin-top: 12vh; margin-inline: 2vw;">
+    <div class="font-2 font-size2" style="font-size: 4vh; font-weight: 600; display: flex; flex-direction: row;">
+      <div class="width35" style="width: 80%; display: flex; align-items: center;">
+        <a>Propostas no Robo:</a>
+      </div>
+      <div class="width40" style="width: 20%; display: flex; flex-direction: row; justify-content: right; align-items: center;">
+        <i id="refresh" onclick="refresh()" title="Atualizar Propostas" class="fad fa-sync font-size2" style="font-size: 3vh; margin-right: 1.2vw; cursor: pointer"></i>
+        <a id="cadastrar" onclick="cadastrar()" class="buttonLogin font-2 font-size1-5" style="font-size: 3vh; padding-inline: 3vh; padding-block: 1vh; border-radius: 1vh; margin-right: 1vw">Cadastrar</a>
+        <input id="selectAll" class="width3 height3vw" onclick="toggleAllCheckBox(this)" title="Selecionar Todos" type="checkbox" style="width: 2.5vh; height: 2.5vh;">
+      </div>
+    </div>
+    <div id="propostas" style="margin-top: 2vh; margin-bottom: 2vh;">
+      <!-- <div id="proposta${index}">
+        <div class="background-Propostas width79" style="position: relative; margin-bottom: 2vh; width: 91.5vw; height: 16vh; border-radius: 1vh; font-size: 2.2vh;">
+          <div class="navbar-font-color font-4 width77" style="display: flex; flex-direction: row; height: 6vh; width: 89.5vw; padding-inline: 1vw; align-items: center; border-bottom: 0.1vh solid rgba(50,50,50,0.2);">
+            <div class="width56-5" style="display: flex; flex-direction: row; width: 81vw; max-width: 81vw; overflow: hidden">
+              <div class="max-width22-5 font-size2" title="${element.BancoContrato}" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 11vw">
+                <a><i class="far fa-landmark font-size2" style="font-size: 2.8vh"></i><span class="invisibleAndroid"> BANCO: </span>${element.BancoContrato}</a>
+              </div>
+              <div class="max-width14 font-size2" title="${element.orgaoPropostaName}" style="margin-left: 1vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 9vw">
+                <a><i class="far fa-bookmark font-size2" style="font-size: 2.8vh"></i><span class="invisibleAndroid"> ORGÃO: </span>${element.orgaoPropostaName}</a>
+              </div>
+              <div class="invisibleAndroid" title="${element.Valor}" style="margin-left: 1vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 12vw">
+                <a><i class="far fa-sack-dollar" style="font-size: 2.8vh"></i> VL. AF: ${element.Valor}</a>
+              </div>
+              <div class="invisibleAndroid" title="${element.Prazo}" style="margin-left: 1vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 8vw">
+                <a><i class="fal fa-table" style="font-size: 2.8vh"></i> PRAZO: ${element.Prazo}</a>
+              </div>
+              <div class="max-width18 font-size2" title="${element.IdContrato}" style="margin-left: 1vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 11vw">
+                <a><i class="far fa-file-code font-size2" style="font-size: 2.8vh"></i><span class="invisibleAndroid"> COD. AF: </span>${element.IdContrato}</a>
+              </div>
+              <div class="invisibleAndroid" title="${element.Tabela}" style="margin-left: 1vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 12vw">
+                <a><i class="far fa-table" style="font-size: 2.8vh"></i> TABELA: ${element.Tabela}</a>
+              </div>
+            </div>
+            <div class="width20-5" style="display: flex; flex-direction: row; width: 8.5vw; max-width: 8.5vw; overflow: hidden; justify-content: right; align-items: center;">
+              <i title="Acompanhamento" class="fad fa-file-search" style="font-size: 2.5vh; cursor: not-allowed"></i>
+              <i title="Editar Proposta" class="fad fa-edit" style="margin-left: 1vh; font-size: 2.5vh; cursor: not-allowed"></i>
+              <input class="width3 height3vw" id="${index}" onclick="toggleCheckBox(this)" name="box" title="Selecionar" type="checkbox" style="margin-left: 1vh; width: 0.9vw; height:0.9vw;">
+            </div>
+          </div>
+          <div class="width77" style="display: flex; flex-direction: row; height: 9vh; width: 89.5vw; padding-inline: 1vw; align-items: center;">
+            <div class="width66-5" style="display: flex; flex-direction: row; width: 87vw; max-width: 87vw; overflow: hidden;">
+              <fieldset class="width18 font-size2" title="${element.NomeCliente}" style="font-size: 2.4vh; border-radius: 0.6vh; width: 15vw; height: 7vh; padding: 0; padding-inline: 0.4vw; margin: 0; border: 0.1vh solid rgba(0,0,0,0.4)">
+                <legend class="font-4" style="margin: 0; padding: 0; font-size: 2.3vh">Nome</legend>
+                <input class="width18 font-size2" value="${element.NomeCliente}" class="font-color" id="name" type="text" style="margin: 0; padding: 0; font-size: 2.3vh; width: 15vw; height: 3vh; border: 0; background: transparent; ${element.NomeCliente.length > 35 ? 'color: red;' : ''}" disabled>
+              </fieldset>
+              <fieldset class="width16 font-size2" title="${element.Cpf}" style="font-size: 2.4vh; border-radius: 0.6vh; width: 8vw; height: 7vh; padding: 0; padding-inline: 0.4vw; margin: 0; margin-left: 0.5vw; border: 0.1vh solid rgba(0,0,0,0.4)">
+                <legend class="font-4" style="margin: 0; padding: 0; font-size: 2.3vh">CPF</legend>
+                <input class="width16 font-size2" value="${element.Cpf}" class="font-color" id="cpf" type="text" style="margin: 0; padding: 0; font-size: 2.3vh; width: 8vw; height: 3vh; border: 0; background: transparent; ${element.Cpf.length != 11 ? 'color: red;' : ''}" disabled>
+              </fieldset>
+              <fieldset class="invisibleAndroid" title="${element.rg}" style="font-size: 2.4vh; border-radius: 0.6vh; width: 5vw; height: 7vh; padding: 0; padding-inline: 0.4vw; margin: 0; margin-left: 0.5vw; border: 0.1vh solid rgba(0,0,0,0.4)">
+                <legend class="font-4" style="margin: 0; padding: 0; font-size: 2.3vh">RG</legend>
+                <input value="${element.rg}" class="font-color" id="rg" type="text" style="margin: 0; padding: 0; font-size: 2.3vh; width: 5vw; height: 3vh; border: 0; background: transparent;" disabled>
+              </fieldset>
+              <fieldset class="invisibleAndroid" title="${element.Cep}" style="font-size: 2.4vh; border-radius: 0.6vh; width: 7vw; height: 7vh; padding: 0; padding-inline: 0.4vw; margin: 0; margin-left: 0.5vw; border: 0.1vh solid rgba(0,0,0,0.4)">
+                <legend class="font-4" style="margin: 0; padding: 0; font-size: 2.3vh">CEP</legend>
+                <input value="${element.Cep}" class="font-color" id="cep" type="text" style="margin: 0; padding: 0; font-size: 2.3vh; width: 7vw; height: 3vh; border: 0; background: transparent; ${element.Cep.length != 8 ? 'color: red;' : ''}" disabled>
+              </fieldset>
+              <fieldset class="invisibleAndroid" title="${element.BancoCliente}" style="font-size: 2.4vh; border-radius: 0.6vh; width: 10vw; height: 7vh; padding: 0; padding-inline: 0.4vw; margin: 0; margin-left: 0.5vw; border: 0.1vh solid rgba(0,0,0,0.4)">
+                <legend class="font-4" style="margin: 0; padding: 0; font-size: 2.3vh">Banco</legend>
+                <input value="${element.BancoCliente}" class="font-color" id="banco" type="text" style="margin: 0; padding: 0; font-size: 2.3vh; width: 10vw; height: 3vh; border: 0; background: transparent;" disabled>
+              </fieldset>
+              <fieldset class="invisibleAndroid" title="${element.Agencia}" style="font-size: 2.4vh; border-radius: 0.6vh; width: 5vw; height: 7vh; padding: 0; padding-inline: 0.4vw; margin: 0; margin-left: 0.5vw; border: 0.1vh solid rgba(0,0,0,0.4)">
+                <legend class="font-4" style="margin: 0; padding: 0; font-size: 2.3vh">Agência</legend>
+                <input value="${element.Agencia}" class="font-color" id="agencia" type="text" style="margin: 0; padding: 0; font-size: 2.3vh; width: 5vw; height: 3vh; border: 0; background: transparent; ${element.Agencia.length != 4 && element.BancoContrato != 'MERCANTIL' ? 'color: red;' : ''}" disabled>
+              </fieldset>
+              <fieldset class="invisibleAndroid" title="${element.ContaCorrente}" style="font-size: 2.4vh; border-radius: 0.6vh; width: 8vw; height: 7vh; padding: 0; padding-inline: 0.4vw; margin: 0; margin-left: 0.5vw; border: 0.1vh solid rgba(0,0,0,0.4)">
+                <legend class="font-4" style="margin: 0; padding: 0; font-size: 2.3vh">Conta</legend>
+                <input value="${element.ContaCorrente}" class="font-color" id="conta" type="text" style="margin: 0; padding: 0; font-size: 2.3vh; width: 8vw; height: 3vh; border: 0; background: transparent;" disabled>
+              </fieldset>
+              <fieldset class="width27-5 font-size2" id="situacaoTitle${index}" title="Aguardando Cadastro..." style="font-size: 2.4vh; border-radius: 0.6vh; width: 17.9vw; height: 7vh; padding: 0; padding-inline: 0.4vw; margin: 0; margin-left: 0.5vw; border: 0.1vh solid rgba(0,0,0,0.4)">
+                <legend class="font-4" style="margin: 0; padding: 0; font-size: 2.3vh">Situação</legend>
+                <input class="width27-5 font-size2" value="Aguardando Cadastro..." class="font-color" id="situacao${index}" type="text" style="margin: 0; padding: 0; font-size: 2.3vh; width: 17.9vw; height: 3vh; border: 0; background: transparent;" disabled>
+              </fieldset>
+            </div>
+            <div class="width10-5" class="navbar-font-color font-4" style="display: flex; height: 9vh; flex-direction: row; width: 2.5vw; max-width: 2.5vw; overflow: hidden; justify-content: right; align-items: center;">
+              <i title="Editar Usuário" class="navbar-font-color fad fa-user-edit" style="font-size: 2.5vh; cursor: not-allowed; margin-top: 0.1vh"></i>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>
+<script>
+  var propostas = []
+  var checkeds = []
+  function toggleAllCheckBox(source) {
+    checkboxes = document.getElementsByName('box');
+    for(var i=0, n=checkboxes.length; i<n;i++) {
+      if (checkboxes[i].id == "selectAll") return;
+      checkboxes[i].checked = source.checked;
+      if (checkboxes[i].id && propostas[checkboxes[i].id] && source.checked) {
+        checkeds[checkeds.length] = {
+          index: checkboxes[i].id,
+          Cpf: propostas[checkboxes[i].id].Cpf,
+          IdContrato: propostas[checkboxes[i].id].IdContrato,
+          orgaoProposta: propostas[checkboxes[i].id].orgaoProposta,
+        }
+      } else if (propostas[checkboxes[i].id] && checkeds.findIndex(r=>r.Cpf == propostas[checkboxes[i].id].Cpf && r.IdContrato == propostas[checkboxes[i].id].IdContrato) >= 0) {
+        checkeds.splice(checkeds.findIndex(r=>r.Cpf == propostas[checkboxes[i].id].Cpf && r.IdContrato == propostas[checkboxes[i].id].IdContrato), 1)
+      }
+    }
+  }
+  function toggleCheckBox(source) {
+    if (source.id == "selectAll") return;
+    if (propostas[source.id] && source.checked) {
+      checkeds[checkeds.length] = {
+        index: source.id,
+        Cpf: propostas[source.id].Cpf,
+        IdContrato: propostas[source.id].IdContrato,
+        orgaoProposta: propostas[source.id].orgaoProposta,
+      }
+    } else if (propostas[source.id] && checkeds.findIndex(r=>r.Cpf == propostas[source.id].Cpf && r.IdContrato == propostas[source.id].IdContrato) >= 0) {
+      checkeds.splice(checkeds.findIndex(r=>r.Cpf == propostas[source.id].Cpf && r.IdContrato == propostas[source.id].IdContrato), 1)
+    }
+  }
+  function refresh() {
+    propostas = []
+    checkeds = []
+    if (document.getElementById('cadastrar').classList.contains('buttonBlock')) return alert('Aguarde...')
+    document.getElementById('cadastrar').classList.add("buttonBlock");
+    document.getElementById('refresh').style.cursor = "not-allowed"
+    document.getElementById('propostas').innerHTML = `<div style="position: absolute; top: 20vh; left: 50%; margin-top: 0vh; margin-left: -2vh"><div class="loader-wheel"></div><div class="loader-text font-5"></div></div>`
+    document.getElementById('selectAll').checked = false
+    $.ajax({ method: "post",url: `/refresh`, 
+      data: { user: localStorage.getItem('user'), pass: localStorage.getItem('password') },
+      success: async function(s) {
+        propostas = []
+        checkeds = []
+        document.getElementById('propostas').innerHTML = ``
+        if (s.FGTS.length >= 1) { 
+          await s.FGTS.forEach((element, index)=> {
+            element.orgaoProposta = "FGTS";
+            element.orgaoPropostaName = "FGTS";
+            propostas[propostas.length] = element;
+          })
+        }
+        if (s.INSS.length >= 1) { 
+          await s.INSS.forEach((element, index)=> {
+            element.orgaoProposta = "INSS";
+            element.orgaoPropostaName = "INSS";
+            propostas[propostas.length] = element;
+          })
+        }
+        if (s.CART.length >= 1) {
+          await s.CART.forEach((element, index)=> {
+            element.orgaoProposta = "CART";
+            element.orgaoPropostaName = "CARTÃO INSS";
+            propostas[propostas.length] = element;
+          })
+        }
+        if (propostas.length >= 1) {
+          propostas.forEach((element, index)=> {
+            document.getElementById('propostas').innerHTML += `<div id="proposta${index}"><div class="background-Propostas width79" style="position: relative; margin-bottom: 2vh; width: 91.5vw; height: 16vh; border-radius: 1vh; font-size: 2.2vh;"><div class="navbar-font-color font-4 width77" style="display: flex; flex-direction: row; height: 6vh; width: 89.5vw; padding-inline: 1vw; align-items: center; border-bottom: 0.1vh solid rgba(50,50,50,0.2);"><div class="width56-5" style="display: flex; flex-direction: row; width: 81vw; max-width: 81vw; overflow: hidden"><div class="max-width22-5 font-size2" title="${element.BancoContrato}" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 22vw"><a><i class="far fa-landmark font-size2" style="font-size: 2.8vh"></i><span class="invisibleAndroid"> BANCO: </span>${element.BancoContrato}</a></div><div class="max-width14 font-size2" title="${element.orgaoPropostaName}" style="margin-left: 1vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 9vw"><a><i class="far fa-bookmark font-size2" style="font-size: 2.8vh"></i><span class="invisibleAndroid"> ORGÃO: </span>${element.orgaoPropostaName}</a></div><div class="invisibleAndroid" title="${element.Valor}" style="margin-left: 1vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 12vw"><a><i class="far fa-sack-dollar" style="font-size: 2.8vh"></i> VL. AF: ${element.Valor}</a></div><div class="invisibleAndroid" title="${element.Prazo}" style="margin-left: 1vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 8vw"><a><i class="fal fa-table" style="font-size: 2.8vh"></i> PRAZO: ${element.Prazo}</a></div><div class="max-width18 font-size2" title="${element.IdContrato}" style="margin-left: 1vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 11vw"><a><i class="far fa-file-code font-size2" style="font-size: 2.8vh"></i><span class="invisibleAndroid"> COD. AF: </span>${element.IdContrato}</a></div><div class="invisibleAndroid" title="${element.Tabela}" style="margin-left: 1vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 12vw"><a><i class="far fa-table" style="font-size: 2.8vh"></i> TABELA: ${element.Tabela}</a></div></div><div class="width20-5" style="display: flex; flex-direction: row; width: 8.5vw; max-width: 8.5vw; overflow: hidden; justify-content: right; align-items: center;"><i title="Acompanhamento" class="fad fa-file-search" style="font-size: 2.5vh; cursor: not-allowed"></i><i title="Editar Proposta" class="fad fa-edit" style="margin-left: 1vh; font-size: 2.5vh; cursor: not-allowed"></i><input class="width3 height3vw" id="${index}" onclick="toggleCheckBox(this)" name="box" title="Selecionar" type="checkbox" style="margin-left: 1vh; width: 0.9vw; height:0.9vw;"></div></div><div class="width77" style="display: flex; flex-direction: row; height: 9vh; width: 89.5vw; padding-inline: 1vw; align-items: center;"><div class="width66-5" style="display: flex; flex-direction: row; width: 87vw; max-width: 87vw; overflow: hidden;"><fieldset class="width18 font-size2" title="${element.NomeCliente}" style="font-size: 2.4vh; border-radius: 0.6vh; width: 15vw; height: 7vh; padding: 0; padding-inline: 0.4vw; margin: 0; border: 0.1vh solid rgba(0,0,0,0.4)"><legend class="font-4" style="margin: 0; padding: 0; font-size: 2.3vh">Nome</legend><input class="width18 font-size2" value="${element.NomeCliente}" class="font-color" id="name" type="text" style="margin: 0; padding: 0; font-size: 2.3vh; width: 15vw; height: 3vh; border: 0; background: transparent; ${element.NomeCliente.length > 35 ? 'color: red;' : ''}" disabled></fieldset><fieldset class="width16 font-size2" title="${element.Cpf}" style="font-size: 2.4vh; border-radius: 0.6vh; width: 8vw; height: 7vh; padding: 0; padding-inline: 0.4vw; margin: 0; margin-left: 0.5vw; border: 0.1vh solid rgba(0,0,0,0.4)"><legend class="font-4" style="margin: 0; padding: 0; font-size: 2.3vh">CPF</legend><input class="width16 font-size2" value="${element.Cpf}" class="font-color" id="cpf" type="text" style="margin: 0; padding: 0; font-size: 2.3vh; width: 8vw; height: 3vh; border: 0; background: transparent; ${element.Cpf.length != 11 ? 'color: red;' : ''}" disabled></fieldset><fieldset class="invisibleAndroid" title="${element.rg}" style="font-size: 2.4vh; border-radius: 0.6vh; width: 5vw; height: 7vh; padding: 0; padding-inline: 0.4vw; margin: 0; margin-left: 0.5vw; border: 0.1vh solid rgba(0,0,0,0.4)"><legend class="font-4" style="margin: 0; padding: 0; font-size: 2.3vh">RG</legend><input value="${element.rg}" class="font-color" id="rg" type="text" style="margin: 0; padding: 0; font-size: 2.3vh; width: 5vw; height: 3vh; border: 0; background: transparent;" disabled></fieldset><fieldset class="invisibleAndroid" title="${element.Cep}" style="font-size: 2.4vh; border-radius: 0.6vh; width: 7vw; height: 7vh; padding: 0; padding-inline: 0.4vw; margin: 0; margin-left: 0.5vw; border: 0.1vh solid rgba(0,0,0,0.4)"><legend class="font-4" style="margin: 0; padding: 0; font-size: 2.3vh">CEP</legend><input value="${element.Cep}" class="font-color" id="cep" type="text" style="margin: 0; padding: 0; font-size: 2.3vh; width: 7vw; height: 3vh; border: 0; background: transparent; ${element.Cep.length != 8 ? 'color: red;' : ''}" disabled></fieldset><fieldset class="invisibleAndroid" title="${element.BancoCliente}" style="font-size: 2.4vh; border-radius: 0.6vh; width: 10vw; height: 7vh; padding: 0; padding-inline: 0.4vw; margin: 0; margin-left: 0.5vw; border: 0.1vh solid rgba(0,0,0,0.4)"><legend class="font-4" style="margin: 0; padding: 0; font-size: 2.3vh">Banco</legend><input value="${element.BancoCliente}" class="font-color" id="banco" type="text" style="margin: 0; padding: 0; font-size: 2.3vh; width: 10vw; height: 3vh; border: 0; background: transparent;" disabled></fieldset><fieldset class="invisibleAndroid" title="${element.Agencia}" style="font-size: 2.4vh; border-radius: 0.6vh; width: 5vw; height: 7vh; padding: 0; padding-inline: 0.4vw; margin: 0; margin-left: 0.5vw; border: 0.1vh solid rgba(0,0,0,0.4)"><legend class="font-4" style="margin: 0; padding: 0; font-size: 2.3vh">Agência</legend><input value="${element.Agencia}" class="font-color" id="agencia" type="text" style="margin: 0; padding: 0; font-size: 2.3vh; width: 5vw; height: 3vh; border: 0; background: transparent; ${element.Agencia.length != 4 && element.BancoContrato != 'MERCANTIL' ? 'color: red;' : ''}" disabled></fieldset><fieldset class="invisibleAndroid" title="${element.ContaCorrente}" style="font-size: 2.4vh; border-radius: 0.6vh; width: 8vw; height: 7vh; padding: 0; padding-inline: 0.4vw; margin: 0; margin-left: 0.5vw; border: 0.1vh solid rgba(0,0,0,0.4)"><legend class="font-4" style="margin: 0; padding: 0; font-size: 2.3vh">Conta</legend><input value="${element.ContaCorrente}" class="font-color" id="conta" type="text" style="margin: 0; padding: 0; font-size: 2.3vh; width: 8vw; height: 3vh; border: 0; background: transparent;" disabled></fieldset><fieldset class="width27-5 font-size2" id="situacaoTitle${index}" title="Aguardando Cadastro..." style="font-size: 2.4vh; border-radius: 0.6vh; width: 17.9vw; height: 7vh; padding: 0; padding-inline: 0.4vw; margin: 0; margin-left: 0.5vw; border: 0.1vh solid rgba(0,0,0,0.4)"><legend class="font-4" style="margin: 0; padding: 0; font-size: 2.3vh">Situação</legend><input class="width27-5 font-size2" value="Aguardando Cadastro..." class="font-color" id="situacao${index}" type="text" style="margin: 0; padding: 0; font-size: 2.3vh; width: 17.9vw; height: 3vh; border: 0; background: transparent;" disabled></fieldset></div><div class="width10-5" class="navbar-font-color font-4" style="display: flex; height: 9vh; flex-direction: row; width: 2.5vw; max-width: 2.5vw; overflow: hidden; justify-content: right; align-items: center;"><i title="Editar Usuário" class="navbar-font-color fad fa-user-edit" style="font-size: 2.5vh; cursor: not-allowed; margin-top: 0.1vh"></i></div></div></div></div>`
+            checkSituation(element, index, "Aguardando Cadastro...")
+          })
+        } else document.getElementById('propostas').innerHTML += `<div style="width: 100%; text-align: center; height: 0.3vh; background: rgb(50,50,50)"></div><div class="font-1" style="text-align: center; margin-top: 2vh; font-size: 2vh; font-weight: 0;"><a>Nenhuma proposta no robo</a></div>`
+        document.getElementById('cadastrar').classList.remove("buttonBlock");
+        document.getElementById('refresh').style.cursor = "pointer"
+      },
+      error: function(e) {
+        if (e.responseJSON.redirect) return location.href = e.responseJSON.redirect
+        alert(JSON.stringify(e));
+        Location.reload()
+      }
+    })
+  }
+  function cadastrar() {
+    if (checkeds.length <= 0) return alert('Selecione as propostas...')
+    if (document.getElementById('cadastrar').classList.contains('buttonBlock')) return alert('Aguarde...')
+    document.getElementById('cadastrar').classList.add("buttonBlock");
+    document.getElementById('refresh').style.cursor = "not-allowed"
+    checkeds.forEach((element, index)=> {
+      if (document.getElementById(`situacao${element.index}`).value != "Aguardando Cadastro...") {
+        
+        return;
+      }
+      document.getElementById(`situacao${element.index}`).style.color = `blue`
+      document.getElementById(`situacao${element.index}`).value = `Iniciando Cadastro...`
+      document.getElementById(`situacaoTitle${element.index}`).title = `Iniciando Cadastro...`
+      setTimeout(function(){ checkSituation(element, element.index, "Aguardando Cadastro...", true) }, 500)
+      $.ajax({ method: "post",url: `/cadastrar`, data: { proposta: element, user: localStorage.getItem('user'), pass: localStorage.getItem('password') },
+        success: async function(s) {
+          if (s.status) {
+            document.getElementById(`situacao${element.index}`).style.color = `green`
+            document.getElementById(`situacao${s.proposta.index}`).value = s.data
+            document.getElementById(`situacaoTitle${s.proposta.index}`).title = s.data
+          } else {
+            document.getElementById(`situacao${element.index}`).style.color = `red`
+            document.getElementById(`situacao${s.proposta.index}`).value = s.data
+            document.getElementById(`situacaoTitle${s.proposta.index}`).title = s.data
+          }
+          document.getElementById('cadastrar').classList.remove("buttonBlock");
+          document.getElementById('refresh').style.cursor = "pointer"
+        },
+        error: function(e) {
+          if (e.responseJSON.redirect) return location.href = e.responseJSON.redirect
+          alert(JSON.stringify(e));
+          Location.reload()
+        }
+      })
+    })
+  }
+  function checkSituation(element, index, situation, action) {
+    $.ajax({ method: "post",url: `/checkSituation`, 
+      data: { proposta: element, situation: situation },
+      success: async function(s) {
+        if (s.status) {
+          if (s.status == "error") {
+            document.getElementById(`situacao${index}`).style.color = `orange`
+          } else if (!action && (s.data.includes('https://'))) {
+            return document.getElementById(`proposta${index}`).innerHTML = ``
+          } else document.getElementById(`situacao${index}`).style.color = `blue`
+          document.getElementById(`situacao${index}`).value = s.data
+          document.getElementById(`situacaoTitle${index}`).title = s.data
+          checkSituation(element, index, s.data, action)
+        } else if (!action && (document.getElementById(`situacao${index}`).value != "Aguardando Cadastro...")) {
+          return document.getElementById(`proposta${index}`).innerHTML = ``
+        } else if (action && (document.getElementById(`situacao${index}`).value == "Iniciando Cadastro...")) return checkSituation(element, index, "Aguardando Cadastro...", action)
+      },
+      error: function(e) {
+        if (e.responseJSON.redirect) return location.href = e.responseJSON.redirect
+        alert(JSON.stringify(e));
+        location.reload()
+      },
+    })
+  }
+  (function () {
+    refresh()
+  })();
+</script>

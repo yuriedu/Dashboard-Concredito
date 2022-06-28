@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+  <head>
+    <%- include('imports/head') %>
+    <title>Concredito Dashboard</title>
+  </head>
+  <body>
+    <div style="position: relative; background-image: linear-gradient(to bottom right, #08436b, #52cbcf); width: 100vw; height: 100vh">
+      <div style="position: absolute; top: 43vh; left: 50%; margin-top: 0vh; margin-left: -2vh; text-align: center">
+        <div class="loader-wheel"></div>
+        <div class="loader-text font-5"></div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function load() {
+      if (!localStorage.getItem('user') || !localStorage.getItem('password')) return location.href = `/login`
+      document.documentElement.className = 'orange'
+      $(document.body).load(`${window.location.pathname.split('/')[1] ? '/'+window.location.pathname.split('/')[1] : ''}/${localStorage.getItem('user') ? localStorage.getItem('user') : 'error'}/${localStorage.getItem('password') ? localStorage.getItem('password') : 'error'}`, function(response, status, xhr) { })
+    }
+    (function () {
+      load()
+    })();
+  </script>
+</html>

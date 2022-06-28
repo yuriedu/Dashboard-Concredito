@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+  <head>
+    <%- include('imports/head') %>
+    <title>Concredito Dashboard</title>
+  </head>
+  <body>
+    <div style="position: relative; background-image: linear-gradient(to bottom right, #08436b, #52cbcf); width: 100vw; height: 100vh">
+      <div class="width74 left10" style="position: absolute; left: 35vw; top: 25vh; padding-inline: 3vw; width: 24vw; height: 50vh; background: white; border-radius: 1vh; box-shadow: 0.4vh 0.4vh 1.5vh 1vh #00000080; text-align: center;">
+        <div class="font-3" style="font-size: 5vh; font-weight: 600; margin-top: 4vh; border-bottom: 0.1vh solid rgba(180,180,180); padding-bottom: 2vh">
+          <img class="width35" src="/images/logo_blue.png" style="width: 15vw;">
+        </div>
+        <div style="margin-inline: 2.5vh; margin-top: 6vh;">
+          <div style="display: flex; flex-direction: row; border-bottom: 0.1vh solid black; align-items: center;">
+            <i style="width: 10%; font-size: 3.8vh;" class="fas fa-user-headset"></i>
+            <input id="user" style="margin: 0; padding: 0; width: 100%; margin-left: 3%; font-size: 3vh; height: 4.4vh; border: 0" placeholder="Digite seu usuário">
+          </div>
+          <div style="margin-top: 4vh; display: flex; flex-direction: row; border-bottom: 0.1vh solid black; align-items: center;">
+            <i style="width: 10%; font-size: 3.8vh" class="fas fa-lock"></i>
+            <input id="password" type="password" style="margin: 0; padding: 0; width: 100%; margin-left: 3%; font-size: 3vh; height: 4.4vh; border: 0" placeholder="Digite sua senha">
+          </div>
+          <div onclick="login()" class="buttonLogin2" style="margin-inline: 2vw; padding-block: 1.5vh; font-size: 4vh; border-radius: 8vh; margin-top: 3vh;">
+            <p class="font-1">Login</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function login(user, password, auto) {
+      if (!auto) {
+        if (!user && document.getElementById('user')) user = document.getElementById('user').value
+        if (!password && document.getElementById('password')) password = document.getElementById('password').value
+        if (!user || !password) return alert('Coloque o usuário e a senha')
+      }
+      $.ajax({ method: "post",url: `/login`, data: { user: user, pass: password },
+        success: function(s) {
+          localStorage.setItem('user', user)
+          localStorage.setItem('password', password)
+          if (window.location.pathname.split('/')[1] == "login") {
+            return location.href = `/`
+          } else return location.reload()
+        },
+        error: function(e) {
+          if (!auto) return alert(e.responseText)
+        }
+      });
+    }(function () {
+      login(localStorage.getItem('user'), localStorage.getItem('password'), true)
+    })();
+  </script>
+</html>
