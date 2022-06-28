@@ -1,17 +1,17 @@
 const mssql = require('mssql');
 const MSSQL = async () => {
   return await mssql.connect({
-    server: "concredito.dyndns.info",
-    database:"dbConcredito",
-    user: "fgts",
-    password: "C0nz@tt12022--",
+    server: process.env.MSSQL_SERVER,
+    database: process.env.MSSQL_NAME,
+    user: process.env.MSSQL_USER,
+    password: process.env.MSSQL_PASSWORD,
     pool: { max: 10, min: 0, idleTimeoutMillis: 30000 },
     options: { encrypt: true, enableArithAbort: true, trustServerCertificate: true }
   });
 }
 
 const mongoose = require('mongoose');
-mongoose.connect("mongodb+srv://concredito:concredito4334@concredito.3kmub.mongodb.net/?retryWrites=true&w=majority", {
+mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }, error => {
