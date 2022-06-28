@@ -155,7 +155,7 @@ async function dadosCliente(cliente, orgao) {
       DataCadastramento: Joi.date().allow(null, ''),
       PendenteDocumentacao: Joi.boolean().allow(null, ''),
       ObsPendenteDocumentacao: Joi.string().allow(null, ''),
-      TipoLiberacao: Joi.number().required(),
+      TipoLiberacao: Joi.number().allow(null, '1'),
       PortabilidadeContrato: Joi.string().allow(null, ''),
       PortabilidadeParcelas: Joi.number().allow(null, ''),
       PortabilidadePrestacao: Joi.number().allow(null, ''),

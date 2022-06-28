@@ -15,79 +15,12 @@ const { BanrisulINSS } = require('./src/Controllers/Cadastros/Banrisul');
 
 var logs = []
 
-async function test() {
-  var element = {
-    IdContrato: 68460,
-    IdCliente: 8647,
-    Cpf: '00110651090',
-    NomeCliente: 'ADRIANA IMLAU ALVES FARIAS',
-    Maatricula: '1507898255',
-    Especie: '21',
-    Datanascimento: new Date('1979-04-21T00:00:00.000Z'), 
-    rg: '06356317049',
-    OrgaoEmissor: 'SSP',
-    EstadoCivil: 'solteiro',
-    sexo: 'F',
-    CodBancoCliente: 104,
-    BancoCliente: 'CAIXA ECONOMICA FEDERAL',
-    Agencia: '3880',
-    ContaCorrente: '3511556109',
-    Poupanca: false,
-    Endereco: 'JORGE DARIVA',
-    EndNumero: '181',
-    Complemento: '',
-    Bairro: 'CENTRO',
-    Cidade: 'OSORIO',
-    UF: 'RS',
-    Cep: '95520000',
-    TelefoneConvenio: '(54)99701-4273',
-    NomeMae: 'lourdes grunwald imlau',
-    NomePai: 'jose viteimar imlau',
-    Email: 'adrianaimlau@gmail.com',
-    Data: new Date('2022-05-31T00:00:00.000Z'),
-    Valor: 13392.32,
-    Tabela: 'PORTABILIDADE COM REFIN 1,50',
-    Prazo: 84,
-    ValorParcela: 301.13,
-    CodBancoContrato: 41,
-    BancoContrato: 'BANRISUL',
-    TipoLiberacao: 1,
-    CodAgente: 31,
-    Agente: 'BRENO DOS SANTOS DIAS',
-    PrimeiroVencimento: null,
-    UltimoVencimento: null,
-    CodFase: 822,
-    Fase: 'AGUARDANDO DIGITAÇÃO AUTOMÁTICA - ROBÔ',
-    NumeroContrato: '11462403',
-    DataLiberacao: null,
-    MotivoFase: 'PENDENTE-RG/CNH ILEGIVEL OU NAO ANEXADA',
-    ObsMotivoFase: '',
-    DataCadastramento: new Date('2022-05-31T15:09:00.000Z'),
-    PendenteDocumentacao: true,
-    ObsPendenteDocumentacao: null,
-    PortabilidadeContrato: '123411984156',
-    PortabilidadeParcelas: 82,
-    PortabilidadePrestacao: 301.13,
-    PortabilidadeBanco: 104
-  }
-  const pool = await MSSQL();
-  //const result = await pool.request().input('orgao', 1).execute('pr_consulta_contratos_para_robo'); // 23 FGTS - 1 INSS - 7 CART INSS
-  //const result = await pool.request().input('fase', 824).execute('pr_consulta_erro_robo');
-  //console.log(result.recordset.length)
-  var log = logs[logs.length] = { af: element.IdContrato, cpf: element.Cpf, situation: 'Iniciando Cadastro...'  }
-  //console.log(await BanrisulINSS(element, pool, log))
-}
-//test()
-
 express()
   .use(bodyparser.json())
   .use(bodyparser.urlencoded({ extended: true }))
   .engine("html", require("ejs").renderFile)
   .use(express.static(require('path').join(__dirname, '/public')))
   .set("view engine", "ejs")
-
-
-
 
   .get('/', async function(req, res) { res.render(__dirname+'/views/loading.ejs', {}); })
   .get('/logout', async function(req, res) { res.render(__dirname+'/views/main.ejs', {}); })
