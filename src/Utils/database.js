@@ -11,7 +11,7 @@ const MSSQL = async () => {
 }
 
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URL, {
+mongoose.connect("mongodb+srv://concredito:concredito4334@concredito.3kmub.mongodb.net/?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }, error => {
