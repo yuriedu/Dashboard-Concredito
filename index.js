@@ -1,4 +1,5 @@
 console.log(`[Dashboard] => Starting...`)
+require('dotenv-safe').config();
 const bodyparser = require("body-parser");
 const express = require("express");
 const { MSSQL, MongoDB } = require('./src/Utils/database');

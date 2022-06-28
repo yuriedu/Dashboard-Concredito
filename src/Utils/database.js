@@ -1,10 +1,10 @@
 const mssql = require('mssql');
 const MSSQL = async () => {
   return await mssql.connect({
-    server: process.env.MSSQL_SERVER,
-    database: process.env.MSSQL_NAME,
-    user: process.env.MSSQL_USER,
-    password: process.env.MSSQL_PASSWORD,
+    server: "concredito.dyndns.info",
+    database:"dbConcredito",
+    user: "fgts",
+    password: "C0nz@tt12022--",
     pool: { max: 10, min: 0, idleTimeoutMillis: 30000 },
     options: { encrypt: true, enableArithAbort: true, trustServerCertificate: true }
   });
