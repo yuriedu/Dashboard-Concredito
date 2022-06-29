@@ -65,7 +65,8 @@ const FactaFGTS = async (cliente, pool, log) => {
                           if (requestProposta && requestProposta.data) {
                             if (requestProposta.data.codigo && requestProposta.data.url_formalizacao) {
                               await updateContratoDB(pool, cliente.IdContrato, Number(calcularSaldo.data.valor_liquido.replace(".","").replace(",",".")) ? Number(calcularSaldo.data.valor_liquido.replace(".","").replace(",",".")) : cliente.Valor, cliente.ValorParcela, 'Valores do Contrato atualizados')
-                              return saveDB(pool, cliente.IdContrato, 9232, requestProposta.data.codigo, `http://${requestProposta.data.url_formalizacao}`, true)
+                              //return saveDB(pool, cliente.IdContrato, 823, requestProposta.data.codigo, `https://${requestProposta.data.url_formalizacao}`, true)
+                              return saveDB(pool, cliente.IdContrato, 823, requestProposta.data.codigo, `Proposta cadastrada! Verifique o link manualmente...`, true)
                             } else {
                               if (requestProposta.data.msg) return saveDB(pool, cliente.IdContrato, 824, '', `[14]=> ${requestProposta.data.msg}`, false)
                               if (requestProposta.data.message) return saveDB(pool, cliente.IdContrato, 824, '', `[14]=> ${requestProposta.data.message}`, false)
