@@ -92,6 +92,7 @@ class Facta {
         return this.getCidadesByCidade(nomeCidade, estado, log)
       }
       if (err.response && err.response.data && err.response.data.includes('Fatal error')) return false;
+      if (err.response && err.response.data && err.response.data.logEntryId) return false;
       console.log(`[API Facta ERROR(4) - ${log.af ? 'AF: '+log.af : 'CPF: '+log.cpf}] => ${err}`)
       console.log(err.response ? err.response.data : err);
       return false;

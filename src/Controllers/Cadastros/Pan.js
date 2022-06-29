@@ -144,8 +144,7 @@ const PanINSS = async (cliente, pool, log) => {
             if (client.Especie == 32 || client.Especie == 92) {
               tabela = simularProposta.data[0].condicoes_credito.find(element => element.codigo_tabela_financiamento === "703195")
             } else if (client.Especie == 88) tabela = simularProposta.data[0].condicoes_credito.find(element => element.codigo_tabela_financiamento === "703627")
-
-
+            if (!tabela || !tabela.valor_cliente) return saveDB(pool, cliente.IdContrato, 824, '', `[6-2]=> Valor do cliente na tabela não foi encontrado...`, false)
             if (parseFloat(tabela.valor_cliente) - client.Valor > client.Valor*0.05) return saveDB(pool, cliente.IdContrato, 824, '', `[8]=> Valor simulado é mais de 5% menor que o proposto ao cliente! Altere o valor e tente novamente... Valor da simulação: ${calcularSaldo.data.valor_liquido}`, false)
             if (bancoTranslate(client.CodBancoCliente) == 104) return saveDB(pool, cliente.IdContrato, 824, '', `[9]=> A API da Pan não aceita Caixa Economica Federal! Faça MANUALMENTE`, false)
             const dsdos_bancarios = [{
