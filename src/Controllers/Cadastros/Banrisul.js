@@ -75,7 +75,7 @@ const BanrisulINSS = async (cliente, pool, log) => {
                 "naturalidadeEstrangeiro": ""
               },
               "rendimento": {
-                "matricula": cliente.Maatricula,
+                "matricula": cliente.BeneficioAF ? cliente.BeneficioAF : cliente.Maatricula,
                 "ufRendimento": cliente.UF,
                 "banco": codBank,
                 "agencia": cliente.Agencia,
@@ -85,7 +85,7 @@ const BanrisulINSS = async (cliente, pool, log) => {
                 "dataAdmissao": "2001-01-01T00:00:00.626Z",
                 "conveniada": "000020", //000020 = INSS (Função)
                 "orgao": "00001", // 00001 = INSS
-                "especieINSS": cliente.Especie,
+                "especieINSS": cliente.EspecieAF ? cliente.EspecieAF : cliente.Especie,
                 "funcaoSIAPE": 0,
                 "matriculaInstituidorSIAPE": "",
                 "nomeInstituidorSIAPE": "",
@@ -110,7 +110,7 @@ const BanrisulINSS = async (cliente, pool, log) => {
                 "operacaoAgrupadaMargemNegativa": true
               },
               "recebimento": {
-                "matricula": cliente.Maatricula,
+                "matricula": cliente.BeneficioAF ? cliente.BeneficioAF : cliente.Maatricula,
                 "utilizarDadosRendimento": true,
                 "banco": codBank,
                 "agencia": cliente.Agencia,
