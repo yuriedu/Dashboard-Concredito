@@ -1,4 +1,4 @@
-console.log(`[Dashboard] => Starting...`)
+console.log(`[Dashboard] => Starting...1`)
 require('dotenv-safe').config();
 const bodyparser = require("body-parser");
 const express = require("express");
