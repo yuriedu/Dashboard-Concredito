@@ -4,7 +4,8 @@
     "description": "website",
     "main": "index.js",
     "scripts": {
-      "start": "node index.js"
+      "start": "node index.js",
+      "prod:start": "pm2-runtime app.js"
     },
     "author": "yuri",
     "dependencies": {
