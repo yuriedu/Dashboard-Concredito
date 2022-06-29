@@ -25,7 +25,6 @@ const FactaFGTS = async (cliente, pool, log) => {
                 if (parseFloat(calcularSaldo.data.valor_liquido.replace(',','.')) - cliente.Valor > cliente.Valor*0.05) return saveDB(pool, cliente.IdContrato, 824, '', `[7]=> Valor simulado é mais de 5% menor que o proposto ao cliente! Altere o valor e tente novamente... Valor da simulação: ${calcularSaldo.data.valor_liquido}`, false)
                 const cidadeDoCliente = await facta.getCidadesByCidade(cliente.Cidade.normalize('NFD').replace(/[\u0300-\u036f]/g, ""), cliente.UF, log)
                 if (cidadeDoCliente) {
-                  console.log(cidadeDoCliente)
                   const simularProposta = await facta.simularProposta(cliente.Cpf, calcularSaldo.data.simulacao_fgts.toString(), cliente.Datanascimento.toISOString().split('T')[0], log);
                   if (simularProposta && simularProposta.data) {
                     if (simularProposta.data.id_simulador) {
