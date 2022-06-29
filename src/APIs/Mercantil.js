@@ -79,7 +79,6 @@ class Mercantil {
     try {
       log.situation = `[4]=> Registrando a proposta...`
       const response = await this.api.post(`${this.url}PropostasExternas/v1/Propostas/FGTS`, data)
-      console.log(response)
       return response;
     } catch(err) {
       if (err.response && (err.response.status == 401 || err.response.status == 504)){
