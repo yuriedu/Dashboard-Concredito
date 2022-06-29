@@ -93,12 +93,13 @@ const MercantilFGTS = async (cliente, pool, log) => {
                         } return saveDB(pool, cliente.IdContrato, 824, '', '[11]=> Ocorreu algum erro ao pegar o link da proposta! Verifique MANUALMENTE no Banco...', false)
                       } else {
                         if (getProposta.data.errors && getProposta.data.errors[0] && getProposta.data.errors[0].message) return saveDB(pool, cliente.IdContrato, 824, '', `[10]=> ${getProposta.data.errors[0].message}`, false)
-                        if (getProposta.data.errors && Object.keys(getProposta.data.errors) && Object.keys(getProposta.data.errors)[0]) return saveDB(pool, cliente.IdContrato, 824, '', `[8]=> ${Object.keys(getProposta.data.errors)[0]}! Verifique e tente novamente...`, false)
+                        if (getProposta.data.errors && Object.keys(getProposta.data.errors) && Object.keys(getProposta.data.errors)[0]) return saveDB(pool, cliente.IdContrato, 824, '', `[10]=> ${Object.keys(getProposta.data.errors)[0]}! Verifique e tente novamente...`, false)
+                        if (getProposta.data.logEntryId) return saveDB(pool, cliente.IdContrato, 824, '', `[10]=> Ocorreu algum erro ao pegar a proposta na esteira! Verifique MANUALMENTE no Banco, se o erro persistir faça manualmente...`, false)
                         console.log(`[Mercantil FGTS Error(4)]=>`)
                         console.log(getProposta.data)
-                        return saveDB(pool, cliente.IdContrato, 824, '', '[10]=> Ocorreu algum erro ao pegar a proposta na esteira! Verifique MANUALMENTE no Banco...', false)
+                        return saveDB(pool, cliente.IdContrato, 824, '', '[10]=> Ocorreu algum erro ao pegar a proposta na esteira! Verifique MANUALMENTE no Banco, se o erro persistir faça manualmente...', false)
                       }
-                    } return saveDB(pool, cliente.IdContrato, 824, '', '[9]=> Ocorreu algum erro ao pegar a proposta na esteira! Verifique MANUALMENTE no Banco...', false)
+                    } return saveDB(pool, cliente.IdContrato, 824, '', '[9]=> Ocorreu algum erro ao pegar a proposta na esteira! Verifique MANUALMENTE no Banco, se o erro persistir faça manualmente...', false)
                   } else {
                     if (registerProposta.data.errors && registerProposta.data.errors[0] && registerProposta.data.errors[0].message) return saveDB(pool, cliente.IdContrato, 824, '', `[8]=> ${registerProposta.data.errors[0].message}`, false)
                     if (registerProposta.data.errors && Object.keys(registerProposta.data.errors) && Object.keys(registerProposta.data.errors)[0]) return saveDB(pool, cliente.IdContrato, 824, '', `[8]=> ${Object.keys(registerProposta.data.errors)[0]}! Verifique e tente novamente...`, false)
