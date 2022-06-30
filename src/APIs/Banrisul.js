@@ -46,12 +46,12 @@ class Banrisul {
       console.log(err.response ? err.response.data : err)
     }
   }
-  async simularPropostaPortabilidade(data, log) {
+  async simularPropostaPortabilidade(data, log, aux) {
     try {
       log.situation = `[3]=> Simulando a proposta...`
-      console.log(data.saldoDevedor)
       const response = await this.api.post(`/consignado/Consignado/Simulacao/V2/SimularPropostaPortabilidade`, data);
       if (response && response.data && response.data.retorno && response.data.retorno.viabilidadeEspecial && response.data.retorno.viabilidadeEspecial.mensagem && response.data.retorno.viabilidadeEspecial.mensagem.includes('juros estar abaixo das tabelas vigentes')) {
+        data.saldoDevedor = data.saldoDevedor / 1.02
         data.saldoDevedor = data.saldoDevedor / 1.02
         return this.simularPropostaPortabilidade(data, log)
       } else if (response && response.data && response.data.retorno && response.data.retorno.viabilidadeEspecial && response.data.retorno.viabilidadeEspecial.mensagem && response.data.retorno.viabilidadeEspecial.mensagem.includes(' juros estar acima da permitida pela conveniada')) {
@@ -60,9 +60,11 @@ class Banrisul {
       } else if (response && response.data && response.data.retorno && response.data.retorno.viabilidadeEspecial && response.data.retorno.viabilidadeEspecial.mensagem && response.data.retorno.viabilidadeEspecial.mensagem.includes('Parcela mínima portável')) {
         data.saldoDevedor = data.saldoDevedor / 1.02
         return this.simularPropostaPortabilidade(data, log)
+      } else if (!aux && response && response.data && response.data.retorno && response.data.retorno.viabilidadeEspecial && response.data.retorno.viabilidadeEspecial.saldoDevedorCorrigido !== data.saldoDevedor) {
+        console.log(response.data.retorno.viabilidadeEspecial)
+        data.saldoDevedor = response.data.retorno.viabilidadeEspecial.saldoDevedorCorrigido
+        return this.simularPropostaPortabilidade(data, log, true)
       }
-      console.log(response.data.retorno.viabilidadeEspecial)
-      console.log(response.data.retorno.simulacao)
       return response;
     } catch(err) {
       if (err.response && err.response.data && err.response.data.erros && err.response.data.erros[0] && err.response.data.erros[0].mensagem) return err.response
@@ -79,7 +81,6 @@ class Banrisul {
   async gravarPropostaPortabilidade(data, log) {
     try {
       log.situation = `[4]=> Gravando a proposta...`
-      console.log(data)
       const response = await this.api.post(`/consignado/Consignado/Proposta/GravarPropostaPortabilidade`, data);
       return response;
     } catch(err) {

@@ -17,7 +17,7 @@ const BanrisulINSS = async (cliente, pool, log) => {
           "conveniada": "000020", //Codigo INSS (FUNÇÃO)
           "prazoRestante": cliente.PortabilidadeParcelas, //PRAZO PORTABILIDADE
           "prazoTotal": cliente.Prazo,
-          "saldoDevedor": cliente.Valor, //SALDO
+          "saldoDevedor": cliente.PortabilidadeValor, //SALDO
           "valorPrestacaoPortabilidade": cliente.PortabilidadePrestacao,
           "valorPrestacaoDesejada": cliente.ValorParcela,
           "dataNascimento": cliente.Datanascimento,

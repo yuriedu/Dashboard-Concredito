@@ -106,6 +106,7 @@ async function dadosCliente(cliente, orgao) {
       PortabilidadeParcelas: Joi.string().allow(null, ''),
       PortabilidadePrestacao: Joi.string().allow(null, ''),
       PortabilidadeBanco: Joi.string().allow(null, ''),
+      PortabilidadeValor: Joi.string().allow(null, ''),
       BeneficioAF: Joi.string().allow(null, ''),
       EspecieAF: Joi.string().allow(null, ''),
     })
@@ -162,6 +163,7 @@ async function dadosCliente(cliente, orgao) {
       PortabilidadeParcelas: Joi.number().allow(null, ''),
       PortabilidadePrestacao: Joi.number().allow(null, ''),
       PortabilidadeBanco: Joi.number().allow(null, ''),
+      PortabilidadeValor: Joi.number().allow(null, ''),
       BeneficioAF: Joi.string().allow(null, ''),
       EspecieAF: Joi.string().allow(null, ''),
     })
