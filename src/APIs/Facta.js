@@ -161,7 +161,7 @@ class Facta {
       if (response.data.msg && response.data.msg.includes('Tente novamente em alguns minutos')) {
         await this.refreshToken(log);
         return this.requestProposta(id_simulador, codigo_cliente, log)
-      } else if (!response.data.url_formalizacao) {
+      } else if (!response.data.url_formalizacao || !response.data.codigo) {
         await this.timeout(5000)
         await this.refreshToken(log);
         return this.requestProposta(id_simulador, codigo_cliente, log, tentativa+1)
