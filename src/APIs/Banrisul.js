@@ -49,6 +49,7 @@ class Banrisul {
   async simularPropostaPortabilidade(data, log) {
     try {
       log.situation = `[3]=> Simulando a proposta...`
+      console.log(data.saldoDevedor)
       const response = await this.api.post(`/consignado/Consignado/Simulacao/V2/SimularPropostaPortabilidade`, data);
       if (response && response.data && response.data.retorno && response.data.retorno.viabilidadeEspecial && response.data.retorno.viabilidadeEspecial.mensagem && response.data.retorno.viabilidadeEspecial.mensagem.includes('juros estar abaixo das tabelas vigentes')) {
         data.saldoDevedor = data.saldoDevedor / 1.02
@@ -60,6 +61,8 @@ class Banrisul {
         data.saldoDevedor = data.saldoDevedor / 1.02
         return this.simularPropostaPortabilidade(data, log)
       }
+      console.log(response.data.retorno.viabilidadeEspecial)
+      console.log(response.data.retorno.simulacao)
       return response;
     } catch(err) {
       if (err.response && err.response.data && err.response.data.erros && err.response.data.erros[0] && err.response.data.erros[0].mensagem) return err.response
@@ -76,6 +79,7 @@ class Banrisul {
   async gravarPropostaPortabilidade(data, log) {
     try {
       log.situation = `[4]=> Gravando a proposta...`
+      console.log(data)
       const response = await this.api.post(`/consignado/Consignado/Proposta/GravarPropostaPortabilidade`, data);
       return response;
     } catch(err) {
