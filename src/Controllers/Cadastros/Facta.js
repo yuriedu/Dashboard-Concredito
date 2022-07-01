@@ -18,6 +18,9 @@ const FactaFGTS = async (cliente, pool, log) => {
             if (cliente.Tabela.includes("GOLD")) {
               tabela = 38776;
               taxa = 2.04;
+            // } else if (cliente.Tabela.includes("PLUS")) {
+            //   tabela = 38881;
+            //   taxa = 2.04;
             } else if (!cliente.Tabela.includes("NORMAL")) return saveDB(pool, cliente.IdContrato, 824, '', '[4]=> Só cadastro propostas na tabela NORMAL ou GOLD!', false)
             const calcularSaldo = await facta.calcularSaldo(cliente.Cpf, saldoObject.repasses, tabela, taxa, log);
             if (calcularSaldo && calcularSaldo.data) {
@@ -58,6 +61,7 @@ const FactaFGTS = async (cliente, pool, log) => {
                         agencia: cliente.Agencia,
                         conta: revisaoPoupanca(parseInt(cliente.ContaCorrente.replace(/\D+/g, '')).toString(),cliente.Poupanca)
                       }
+                      //console.log(clientData)
                       const registerProposta = await facta.registerProposta(simularProposta.data.id_simulador, clientData, log);
                       if (registerProposta && registerProposta.data) {
                         if (registerProposta.data.codigo_cliente) {
