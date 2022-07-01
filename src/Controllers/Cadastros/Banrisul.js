@@ -123,7 +123,7 @@ const BanrisulINSS = async (cliente, pool, log) => {
             const gravarProposta = await banrisul.gravarPropostaPortabilidade(proposta, log);
             if (gravarProposta && gravarProposta.data) {
               if (gravarProposta.data.retorno && 
-                gravarProposta.data.retorno.proposta) {
+                gravarProposta.data.retorno.proposta && gravarProposta.data.retorno.proposta != 0) {
                 await updateContratoDB(pool, cliente.IdContrato, simularProposta.data.retorno.viabilidadeEspecial.valorFinanciado ? simularProposta.data.retorno.viabilidadeEspecial.valorFinanciado : cliente.Valor, cliente.ValorParcela, 'Valores do Contrato atualizados')
                 return saveDB(pool, cliente.IdContrato, 823, gravarProposta.data.retorno.proposta, `Proposta cadastrada, o cliente recebeu um SMS para efetuar a assinatura. Se preferir, o cliente pode chamar o banco no WhatsApp e obter o link de formalização. Link abaixo: \n https://wa.me/555140639848?text=Oi \n\n OBS: O cliente precisa entrar em contato pelo WhatsApp com o mesmo número que esta no cadastro`, true)
               } else {
